@@ -7,8 +7,8 @@ import GameOver from './components/GameOver'
 
 
 const PLAYERS = {
-  X: { name: 'Player 1' },
-  O: { name: 'Player 2' },
+  X: 'Player 1',
+  O: 'Player 2',
 }
 
 const INITIAL_GAME_BOARD = [
