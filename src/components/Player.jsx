@@ -1,12 +1,16 @@
 import { useState } from 'react';
 
 
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({ initialName, symbol, isActive, onChangeName }) {
     const [playerName, setPlayerName] = useState(initialName); // 초기값을 props로 받아서 state로 관리
     const [isEditing, setIsEditing] = useState(false);
 
     function handleEditClick() {
         setIsEditing(editing => !editing) // Edit 버튼을 클릭했을 때 true로 바꿔서 Save 버튼을 보여주기
+        if (isEditing) {
+            onChangeName(symbol, playerName) // 부모 컴포넌트에 playerName을 전달
+        }
+
     }
 
     function handleChange(event) {

@@ -1,21 +1,8 @@
 
 
-const initialGameBoard = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null],
-]
 
 
-export default function GameBoard({ onSelectSquare, turns }) {
-    let gameBoard = initialGameBoard; // 초기값을 props로 받아서 state로 관리
-
-    for (const turn of turns) {
-        const { square, player } = turn; // 비구조화 할당으로 객체에서 필요한 값만 추출
-        const { row, col } = square; // 비구조화 할당으로 객체에서 필요한 값만 추출
-        gameBoard[row][col] = player; // 클릭한 칸에 플레이어의 심볼을 넣어줌
-    }
-
+export default function GameBoard({ onSelectSquare, board }) {
 
     // const [gameBoard, setGameBoard] = useState(initialGameBoard); // 초기값을 props로 받아서 state로 관리
 
@@ -35,12 +22,14 @@ export default function GameBoard({ onSelectSquare, turns }) {
 
     return (
         <ol id="game-board">
-            {gameBoard.map((row, rowIndex) => (
+            {board.map((row, rowIndex) => (
                 <li key={rowIndex} >
                     <ol>
                         {row.map((playerSymbol, colIndex) => (
                             <li key={colIndex}>
-                                <button onClick={() => onSelectSquare(rowIndex, colIndex)}>{playerSymbol}</button>
+                                <button onClick={() => onSelectSquare(rowIndex, colIndex)} disabled={playerSymbol !== null}>
+                                    {playerSymbol}
+                                </button>
                             </li>
                         ))}
                     </ol>
